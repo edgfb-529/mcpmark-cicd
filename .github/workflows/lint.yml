@@ -1,0 +1,29 @@
+name: Code Linting
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        if: ${{ hashFiles('**/package-lock.json') != '' || hashFiles('**/npm-shrinkwrap.json') != '' }}
+        run: npm ci
+
+      - name: Install ESLint globally
+        run: npm install -g eslint
+
+      - name: Run ESLint
+        run: eslint 'src/**/*.js'
