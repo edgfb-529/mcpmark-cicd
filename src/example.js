@@ -1,7 +1,7 @@
-// Intentionally bad code to trigger ESLint errors
+// Example function with proper linting
 export function example() {
-  var unused = 1
-  console.log("Hello")
+  console.log('Hello');
 }
 
-const notUsed = (x, y) => { return x + y }
+// Remove unused variable and ensure proper quotes and semicolons
+export const add = (x, y) => x + y;
